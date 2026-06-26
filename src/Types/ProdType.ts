@@ -4,8 +4,11 @@ export type ProdType = {
     price: number;
 }*/
 export type ProductType = {
+    id: string|number;
     title:string,
-    count: number,
+    count?: number,
     price:number,
-    is_active: boolean, //check box
+    is_active?: boolean, //check box
+    image?:string,
+    id_category?:string|number,
 }

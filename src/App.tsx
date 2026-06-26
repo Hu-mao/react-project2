@@ -1,6 +1,5 @@
- import {useState} from "react";
-import './App.css'
-// import type {ProductType} from "./Types/ProdType.ts";
+//  import {useState} from "react";
+// import styleApp from "./Types/App.module.css"
 
  // У проект з лічильником додати наступний функціонал
  // Коли значення лічильника стає 0 кнопка - (Down)
@@ -10,34 +9,37 @@ import './App.css'
  // лічильника досягає 100
  // Коли значення лічильника стає 0 або 100 виводи значення на лічильнику
  // червоним жирним кольором, шрифт 28px
-function App() {
-    let [value, setValue] = useState(50)
-    let [check, setCheck] = useState(true);
-    let [check1, setCheck1] = useState(true);
-    return (
-        <>
-            <p>Value:{value}</p>
-            <button className={"Up"} disabled={!check} onClick={() =>
-            {
-                if (value < 100) {
-                setValue(value + 10);
-                setCheck(true);
-                } else {
-                setCheck(false);
-                }
-            }}>Up</button>
-            <button className={"Down"} disabled={!check1} onClick={() =>
-            {
-                if (value < 100) {
-                    setValue(value + 10);
-                    setCheck(true);
-                } else {
-                    setCheck(false);
-                }
-            }}>Down</button>
-        </>)
-}
-export default App
+// function App() {
+//     let [value, setValue] = useState(50)
+//     let [check, setCheck] = useState(true);
+//     let [check1, setCheck1] = useState(true);
+//     return (
+//         <>
+//             <p className={value === 0 || value === 100 ? styleApp.redCou : ""} >Value:{value}</p>
+//             <button
+//                 disabled={!check} onClick={() =>
+//             {
+//                 setValue(value + 10);
+//                 if (value < 90) {
+//                 setCheck(true);
+//                 setCheck1(true);
+//                 } else {
+//                 setCheck(false);
+//                 }
+//             }}>Up</button>
+//             <button disabled={!check1} onClick={() =>
+//             {
+//                 setValue(value - 10);
+//                 if (value > 10) {
+//                     setCheck1(true);
+//                     setCheck(true);
+//                 } else {
+//                     setCheck1(false);
+//                 }
+//             }}>Down</button>
+//         </>)
+// }
+// export default App
 
 
 /* Додати в інтерфейс поле для count і для is_active (checkbox)
@@ -248,3 +250,65 @@ export default App*/
  //
  //
  //
+ // type ButtonProps = {
+ //     text: string;
+ // };
+ //
+ // const Button = ({ text }: ButtonProps) => {
+ //     return (
+ //         <button className="bg-green text-white font-semibold">
+ //             {text}
+ //         </button>
+ //     );
+ // };
+ //
+ // export default Button;
+// import AddToBasket from "./Types/AddToBasket.tsx";
+// import styles from './Types/App.module.css';
+// function App() {
+//     return (
+//         <ul className="bg-gray-300 h-92 w-145 flex justify-center">
+//             <li className={"bg-white p-5 w-70 h-90 m-auto relative"}>
+//                 <img src="https://i.allo.ua/media/catalog/product/cache/3/small_image/212x184/9df78eab33525d08d6e5fb8d27136e95/e/h/eh187k_black.webp" />
+//                 <button id="like" className={`${styles.like} transition duration-200 w-10 h-10 rounded-md text-2xl text-blue-400`}>♡</button>
+//                 <div className="text-lg mt-5">Навушники Esperanz EH187K Black</div>
+//                 <div>
+//                     <span className="text-yellow-600 text-xs">★</span>
+//                     <span className="text-xs text-gray-300"> ★ ★ ★ ★</span>
+//                     <div  className="text-xl absolute top-[280px] left-[95px]">💬</div>
+//                     <div id="comments" className={`${styles.comments} absolute top-[285.5px] left-[130px]`}>1</div>
+//                 </div>
+//
+//                 <div id="cost" className={styles.cost}>229 ₴</div>
+//                 <AddToBasket />
+//             </li>
+//             <li className={"bg-white p-5 w-70 h-90 m-auto relative"}>
+//                 <img src="https://i.allo.ua/media/catalog/product/cache/3/small_image/212x184/9df78eab33525d08d6e5fb8d27136e95/c/n/cnd-gtws2o_.webp" />
+//                 <button id="like" className={`${styles.like} transition duration-200 w-10 h-10 rounded-md text-2xl text-blue-400`}>♡</button>
+//                 <div className="text-lg mt-5">Навушники Canyon GTWS2 (CND-GTWS2O) Orange</div>
+//                 <div>
+//                     <span className="text-yellow-600 text-xs">★</span>
+//                     <span className="text-xs text-gray-300"> ★ ★ ★ ★</span>
+//                     <div  className="text-xl absolute top-[280px] left-[95px]">💬</div>
+//                     <div id="comments" className={`${styles.comments} absolute top-[285.5px] left-[130px]`}>27</div>
+//                 </div>
+//                 <div id="cost" className={`text-gray-400 top-[311px] absolute text-xs line-through`}>629 ₴</div>
+//                 <div id="cost" className={`${styles.cost} text-red-600 top-[310px] absolute`}>529 ₴</div>
+//                 <AddToBasket />
+//             </li>
+//         </ul>
+//     );
+// }
+
+import ProductsList from "./Components/ProductList.tsx";
+// import AddProduct from "./Components/AddProduct.tsx";
+import { useState} from "react";
+import productData from "./models/products.ts"
+function App() {
+    const [products, setProducts] = useState(productData)
+    return (<>
+        <ProductsList products={products}/>
+        <AddProduct setProduct={setProducts} products={products}/>
+    </>)
+}
+export default App;
